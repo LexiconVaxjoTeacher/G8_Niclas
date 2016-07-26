@@ -1,0 +1,17 @@
+﻿@*This is the log-in form. It takes two values, Username and Password. It sends these on to LogIn, Post. Yupp.*@
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LogIn</h2>
+
+@using (Html.BeginForm(actionName: "LogIn", controllerName: "Idenity", method: FormMethod.Post, htmlAttributes: new { }, routeValues: new { }))
+{
+    <label for="name">Username: </label>
+    <input type="text" name="name" value="" />
+    <label for="password">Password: </label>
+    <input type="password" name="password" value="" />
+    <input type="submit" value="Send" />
+}

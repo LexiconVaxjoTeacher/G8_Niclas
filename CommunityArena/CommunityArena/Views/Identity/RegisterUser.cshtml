@@ -1,0 +1,20 @@
+﻿@*This is a form for registering a user. It has Username, Password and Verify Password fields.
+    It calls the RegisterUser action, post-wise. Yeah.*@
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RegisterUser</h2>
+
+@using (Html.BeginForm(actionName: "RegisterUser", controllerName: "Identity", method: FormMethod.Post, htmlAttributes: new { }, routeValues: new { }))
+{
+    <label for="username">Username: </label>
+    <input type="text" name="username" value="">
+    <label for="password">Password: </label>
+    <input type="password" name="password" value="" />
+    <label for="verifyPassword">Verify Password: </label>
+    <input type="password" name="verifyPassword" value="" />
+    <input type="submit" value="Send" />
+}

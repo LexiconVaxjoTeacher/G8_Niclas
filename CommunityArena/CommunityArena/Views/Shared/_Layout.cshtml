@@ -19,10 +19,30 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+            
+            @*If logged in, one can log out.
+                If not logged in, one can register a user or log in.*@
+            @if (Request.IsAuthenticated)
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Log Out", "LogOut", "Identity", new { area = "" }, new { @class = "nav" })</li>
+                    </ul>
+                </div>
+                <p>Hello, @User.Identity.Name</p>
+            }
+            else
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Log In", "LogIn", "Identity", new { area = "" }, new { @class = "nav" })</li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Register", "RegisterUser", "Identity", new { area = "" }, new { @class = "nav" })</li>
+                    </ul>
+                </div>
+            }
+
         </div>
     </div>
 
