@@ -1,0 +1,100 @@
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\ApplicationInsights.config
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\csc.exe
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\System.Collections.Immutable.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\vbc.exe
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\VBCSCompiler.exe
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\roslyn\VBCSCompiler.exe.config
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\CommunityArena.dll.config
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\CommunityArena.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\CommunityArena.pdb
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\EntityFramework.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\EntityFramework.SqlServer.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.Web.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.WindowsServer.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.ApplicationInsights.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.Web.Infrastructure.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Helpers.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Mvc.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Razor.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.Deployment.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.Razor.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\EntityFramework.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\EntityFramework.SqlServer.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.Web.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.AI.WindowsServer.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.ApplicationInsights.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Razor.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.Deployment.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Webpages.Razor.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Helpers.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\bin\System.Web.Mvc.xml
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\obj\Debug\CommunityArena.csprojResolveAssemblyReference.cache
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\obj\Debug\CommunityArena.dll
+c:\users\deltagare\documents\visual studio 2015\Projects\CommunityArena\CommunityArena\obj\Debug\CommunityArena.pdb
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\ApplicationInsights.config
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\csc.exe
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\vbc.exe
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\VBCSCompiler.exe
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\CommunityArena.dll.config
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\CommunityArena.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\CommunityArena.pdb
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\EntityFramework.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\EntityFramework.SqlServer.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.Web.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.ApplicationInsights.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Helpers.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Mvc.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Razor.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.Deployment.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.Razor.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\EntityFramework.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\EntityFramework.SqlServer.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.Web.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.ApplicationInsights.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Razor.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.Deployment.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Webpages.Razor.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Helpers.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\bin\System.Web.Mvc.xml
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.csprojResolveAssemblyReference.cache
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.dll
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.pdb
