@@ -29,5 +29,10 @@ namespace CommunityArena.Models
         {
             return new Context();
         }
+
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<SubForum> SubForums { get; set; }
+        public DbSet<Thread> Threads { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

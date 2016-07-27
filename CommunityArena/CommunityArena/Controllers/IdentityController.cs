@@ -79,7 +79,9 @@ namespace CommunityArena.Controllers
             {
                 var newUser = new AppUser()
                 {
-                    UserName = username
+                    UserName = username,
+                    CurrentForumID = 0,
+                    CurrentThreadID = 0
                 };
 
                 var result = await Context.UserManager.CreateAsync(newUser, password);

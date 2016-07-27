@@ -16,6 +16,9 @@ namespace CommunityArena.Models
 
         }
 
+        public int CurrentForumID { get; set; }
+        public int CurrentThreadID { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);

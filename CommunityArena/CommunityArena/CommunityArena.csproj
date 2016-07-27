@@ -202,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,9 +212,18 @@
     <Compile Include="Migrations\201607260814417_Initiation.Designer.cs">
       <DependentUpon>201607260814417_Initiation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607261219531_Forum.cs" />
+    <Compile Include="Migrations\201607261219531_Forum.Designer.cs">
+      <DependentUpon>201607261219531_Forum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607261335036_forgotTextInPosts.cs" />
+    <Compile Include="Migrations\201607261335036_forgotTextInPosts.Designer.cs">
+      <DependentUpon>201607261335036_forgotTextInPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Context.cs" />
+    <Compile Include="Models\ForumItems.cs" />
     <Compile Include="Models\TutorialContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -241,10 +251,18 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Forum\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607260814417_Initiation.resx">
       <DependentUpon>201607260814417_Initiation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261219531_Forum.resx">
+      <DependentUpon>201607261219531_Forum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607261335036_forgotTextInPosts.resx">
+      <DependentUpon>201607261335036_forgotTextInPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
