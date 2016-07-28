@@ -176,5 +176,10 @@ namespace CommunityArena.Controllers
             HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        public JsonResult GetUser()
+        {
+            return Json(System.Web.HttpContext.Current.User.Identity.GetUserId());
+        }
     }
 }

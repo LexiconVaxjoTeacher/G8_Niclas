@@ -16,19 +16,7 @@ namespace CommunityArena.Models
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
-    }
-
-    public class SubForum
-    {
-        public SubForum()
-        {
-
-        }
-
-        [Key]
-        public int ID { get; set; }
         public int ParentForumID { get; set; }
-        public int SubForumID { get; set; }
     }
 
     public class Thread
@@ -54,7 +42,7 @@ namespace CommunityArena.Models
         [Key]
         public int ID { get; set; }
         public int ThreadID { get; set; }
-        public int UserID { get; set; }
+        public string Poster { get; set; }
         public DateTime PostTime { get; set; }
         public string Text { get; set; }
     }

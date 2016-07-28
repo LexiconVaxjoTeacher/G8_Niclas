@@ -19,21 +19,14 @@ namespace CommunityArena.Controllers
         {
             using (var context = new Context())
             {
-                context.Forums.Add(new Forum()
-                {
-                    Name = _name
+                context.Forums.Add(new Forum() {
+                    Name = _name,
+                    ParentForumID = _parentForum
                 });
-
-                context.SubForums.Add(new SubForum()
-                {
-                    ParentForumID = _parentForum,
-                    SubForumID = context.Forums.Last().ID
-                });
-
-                context.SaveChanges();
+                context.SaveChanges();                
             }
         }
-
+        
         public void CreateThread(string _name, int _forum)
         {
             using (var context = new Context())
@@ -48,13 +41,13 @@ namespace CommunityArena.Controllers
             }
         }
 
-        public void CreatePost(int _user, int _thread, string _text)
+        public void CreatePost(string _user, int _thread, string _text)
         {
             using (var context = new Context())
             {
                 context.Posts.Add(new Post()
                 {
-                    UserID = _user,
+                    Poster = _user,
                     ThreadID = _thread,
                     PostTime = DateTime.Now,
                     Text = _text
@@ -64,23 +57,71 @@ namespace CommunityArena.Controllers
             }
         }
 
-        public List<SubForum> GetSubForums(int _forumId)
+        public JsonResult GetMainForum()
         {
-            List<SubForum> result = new List<SubForum>();
+            Forum forum = new Forum();
 
             using (var context = new Context())
             {
-                var subforums = from sf in context.SubForums
-                              where _forumId.Equals(sf.ParentForumID)
-                              select sf;
-
-                result = subforums.ToList();
+                forum = (from f in context.Forums
+                         where f.Name.Equals("Main Forum")
+                         select f).First();
             }
 
-            return result;
+            return Json(forum, JsonRequestBehavior.AllowGet);
         }
 
-        public List<Thread> GetThreads(int _forumId)
+        public JsonResult GetForumName(int _forumId)
+        {
+            string result = "";
+            using (var context = new Context())
+            {
+                if (_forumId == -1 || context.Forums.Count() < 1)
+                {
+                    return Json("", JsonRequestBehavior.AllowGet);
+                }
+                result = context.Forums.Find(_forumId).Name;
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetForum(int _forumId)
+        {
+            Forum result = new Forum();
+            using (var context = new Context())
+            {
+                result = context.Forums.Find(_forumId);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetThread(int _threadId)
+        {
+            Thread result = new Thread();
+            using (var context = new Context())
+            {
+                result = context.Threads.Find(_threadId);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetSubForums(int _forumId)
+        {
+            List<Forum> result = new List<Forum>();
+
+            using (var context = new Context())
+            {
+                var forums = from f in context.Forums
+                              where _forumId.Equals(f.ParentForumID)
+                              select f;
+
+                result = forums.ToList();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetThreads(int _forumId)
         {
             List<Thread> result = new List<Thread>();
 
@@ -93,7 +134,46 @@ namespace CommunityArena.Controllers
                 result = threads.ToList();
             }
 
-            return result;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPosts(int _threadId)
+        {
+            List<Post> result = new List<Post>();
+
+            using (var context = new Context())
+            {
+                var posts = from p in context.Posts
+                              where _threadId.Equals(p.ThreadID)
+                              select p;
+
+                result = posts.ToList();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public void SeedForum()
+        {
+            /*CreateForum("Main Forum", 1, -1);
+            CreateForum("Subforum 1", 2, 1);
+            CreateForum("Subforum 2", 3, 1);
+            CreateForum("Subforum 3", 4, 1);
+            CreateForum("Subforum 1-1", 5, 2);
+            CreateForum("Subforum 2-1", 6, 3);
+            CreateForum("Subforum 2-2", 7, 3);
+            CreateForum("Subforum 1-1-1", 8, 5);*/
+            /*CreateThread("Thread 1", 1);
+            CreateThread("Thread 2", 1);
+            CreateThread("Thread 3", 1);
+            CreateThread("Thread 4", 2);
+            CreateThread("Thread 5", 2);
+            CreateThread("Thread 6", 3);
+            CreateThread("Thread 7", 4);
+            CreateThread("Thread 8", 5);
+            CreateThread("Thread 9", 6);
+            CreateThread("Thread 10", 8);*/
         }
     }
 }

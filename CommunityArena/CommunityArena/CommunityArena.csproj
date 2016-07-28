@@ -174,6 +174,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="html\thread.html" />
     <Content Include="html\forum.html" />
     <Content Include="Global.asax" />
     <Content Include="js\app.js" />
@@ -220,6 +221,18 @@
     <Compile Include="Migrations\201607261335036_forgotTextInPosts.Designer.cs">
       <DependentUpon>201607261335036_forgotTextInPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607271152577_RemoveSubforumTable.cs" />
+    <Compile Include="Migrations\201607271152577_RemoveSubforumTable.Designer.cs">
+      <DependentUpon>201607271152577_RemoveSubforumTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607271217257_WhatTheEverLiving.cs" />
+    <Compile Include="Migrations\201607271217257_WhatTheEverLiving.Designer.cs">
+      <DependentUpon>201607271217257_WhatTheEverLiving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607281016418_PostUsernames.cs" />
+    <Compile Include="Migrations\201607281016418_PostUsernames.Designer.cs">
+      <DependentUpon>201607281016418_PostUsernames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Context.cs" />
@@ -263,6 +276,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607261335036_forgotTextInPosts.resx">
       <DependentUpon>201607261335036_forgotTextInPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607271152577_RemoveSubforumTable.resx">
+      <DependentUpon>201607271152577_RemoveSubforumTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607271217257_WhatTheEverLiving.resx">
+      <DependentUpon>201607271217257_WhatTheEverLiving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607281016418_PostUsernames.resx">
+      <DependentUpon>201607281016418_PostUsernames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -121,3 +121,6 @@ C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.csproj.GenerateResource.Cache
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.Forum.resources
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.forgotTextInPosts.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.RemoveSubforumTable.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.WhatTheEverLiving.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.PostUsernames.resources

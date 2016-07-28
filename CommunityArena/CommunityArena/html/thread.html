@@ -1,0 +1,15 @@
+﻿<!--<button ng-click="makeForum()">Make Post!</button>-->
+<a ng-click="toForum(currentForum.ID)">Back to {{name}}</a>
+
+<h3>{{currentThread.Name}}</h3>
+
+<div ng-repeat="post in posts">
+    <h3>{{post.Poster}} posted on {{post.PostTime.Date}}</h3>
+    <p>{{post.Text}}</p>
+</div>
+
+<form name="MakePost" ng-submit="makePost(currentThread.ID)">
+    <label for="newPostName">New Post Text: </label>
+    <input type="text" ng-model="inputs.newPostText" required />
+    <input type="submit" ng-disabled="MakePost.$invalid" />
+</form>
