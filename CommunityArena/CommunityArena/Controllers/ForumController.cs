@@ -57,6 +57,33 @@ namespace CommunityArena.Controllers
             }
         }
 
+        public void DeleteForum(int _forum)
+        {
+            using (var context = new Context())
+            {
+                context.Forums.Remove(context.Forums.Find(_forum));
+                context.SaveChanges();
+            }
+        }
+
+        public void DeleteThread(int _thread)
+        {
+            using (var context = new Context())
+            {
+                context.Threads.Remove(context.Threads.Find(_thread));
+                context.SaveChanges();
+            }
+        }
+
+        public void DeletePost(int _post)
+        {
+            using (var context = new Context())
+            {
+                context.Posts.Remove(context.Posts.Find(_post));
+                context.SaveChanges();
+            }
+        }
+
         public JsonResult GetMainForum()
         {
             Forum forum = new Forum();
@@ -148,6 +175,81 @@ namespace CommunityArena.Controllers
                               select p;
 
                 result = posts.ToList();
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public void UpdateForumPosition(int _forumId)
+        {
+            using (var context = new Context())
+            {
+                var users = from u in context.Users
+                            where u.UserName.Equals(User.Identity.Name)
+                            select u;
+                    //context.Users.(User.Identity.Name);
+                if (0 < users.Count())
+                {
+                    var user = users.First();
+
+                    user.CurrentForumID = _forumId;
+                    user.CurrentThreadID = -1;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdateThreadPosition(int _threadId)
+        {
+            using(var context = new Context())
+            {
+                var users = from u in context.Users
+                            where u.UserName.Equals(User.Identity.Name)
+                            select u;
+                    //context.Users.Find(User.Identity.Name);
+                if (0 < users.Count())
+                {
+                    var user = users.First();
+
+                    user.CurrentThreadID = _threadId;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public JsonResult GetForumUsers(int _forumId)
+        {
+            List<string> result = new List<string>();
+
+            using (var context = new Context())
+            {
+                var users = from u in context.Users
+                                where _forumId.Equals(u.CurrentForumID)
+                                select u;
+
+                foreach (var user in users)
+                {
+                    result.Add(user.UserName);
+                }
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetThreadUsers(int _threadId)
+        {
+            List<string> result = new List<string>();
+
+            using (var context = new Context())
+            {
+                var users = from u in context.Users
+                            where _threadId.Equals(u.CurrentThreadID)
+                            select u;
+
+                foreach (var user in users)
+                {
+                    result.Add(user.UserName);
+                }
             }
 
             return Json(result, JsonRequestBehavior.AllowGet);

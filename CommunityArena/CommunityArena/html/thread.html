@@ -3,12 +3,17 @@
 
 <h3>{{currentThread.Name}}</h3>
 
-<div ng-repeat="post in posts">
-    <h3>{{post.Poster}} posted on {{post.PostTime.Date}}</h3>
-    <p>{{post.Text}}</p>
+<div ng-repeat="user in threadUsers">
+    <p>{{user}}</p>
 </div>
 
-<form name="MakePost" ng-submit="makePost(currentThread.ID)">
+<div ng-repeat="post in posts">
+    <p>{{post.Poster}} posted on {{post.date.toDateString()}}</p>
+    <p>{{post.Text}}</p>
+    <button ng-show="adminCheck()" ng-click="deletePost(post.ID)">Delete Post</button>
+</div>
+
+<form name="MakePost" ng-submit="makePost(currentThread.ID)" ng-show="userCheck()">
     <label for="newPostName">New Post Text: </label>
     <input type="text" ng-model="inputs.newPostText" required />
     <input type="submit" ng-disabled="MakePost.$invalid" />

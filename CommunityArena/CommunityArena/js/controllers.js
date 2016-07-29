@@ -5,17 +5,34 @@
     $scope.threads = {};
     $scope.posts = {};
     $scope.mainForum = {};
+    $scope.forumUsers = {};
+    $scope.threadUsers = {};
 
     $scope.inputs = {};
 
-    $scope.newForumName = "";
-    $scope.newThreadName = "";
-    $scope.newPostText = "";
+    $scope.role = "";
 
+    $scope.getRole = function () {
+        $http({ url: "/Identity/GetRole", method: "GET", params: {} }).then(function (response) {
+            $scope.role = response.data;
+        });
+    };
     
     $scope.getForumName = function (id) {
         $http({ url: "/Forum/GetForumName", method: "GET", params: { _forumId: id } }).then(function (response) {
             $scope.name = response.data;
+        });
+    };
+
+    $scope.getForumUsers = function (id) {
+        $http({ url: "/Forum/GetForumUsers", method: "GET", params: { _forumId: id } }).then(function (response) {
+            $scope.forumUsers = response.data;
+        });
+    };
+
+    $scope.getThreadUsers = function (id) {
+        $http({ url: "/Forum/GetThreadUsers", method: "GET", params: { _threadId: id } }).then(function (response) {
+            $scope.threadUsers = response.data;
         });
     };
 
@@ -24,6 +41,7 @@
             $scope.currentForum = response.data;
 
             $scope.getForumName($scope.currentForum.ParentForumID);
+            $scope.getForumUsers(id);
             $scope.getSubForums(id);
             $scope.getThreads(id);
         });
@@ -34,6 +52,7 @@
             $scope.currentThread = response.data;
 
             $scope.getForumName($scope.currentThread.ForumID);
+            $scope.getThreadUsers(id);
             $scope.getPosts(id);
         });
     }
@@ -59,6 +78,10 @@
     $scope.getPosts = function (id) {
         $http({ url: "/Forum/GetPosts", method: "GET", params: { _threadId: id } }).then(function (response) {
             $scope.posts = response.data;
+            for (var i = 0; i < $scope.posts.length; i++) {
+                $scope.posts[i].date = $scope.posts[i].PostTime;
+                $scope.posts[i].date = new Date($scope.posts[i].PostTime.match(/\d+/)[0] * 1);
+            }
         });
     };
 
@@ -70,6 +93,7 @@
     };
 
     $scope.getMainForum();
+    $scope.getRole();
 
     $scope.makeForum = function (id) {
         console.log($scope.inputs.newForumName);
@@ -97,17 +121,60 @@
         });
     };
 
+    $scope.deleteForum = function (id) {
+        $http({ url: "/Forum/DeleteForum", method: "POST", params: { _forum: id } }).then(function () {
+            $scope.getSubForums($scope.currentForum.ID);
+        });
+    };
+
+    $scope.deleteThread = function (id) {
+        $http({ url: "/Forum/DeleteThread", method: "POST", params: { _thread: id } }).then(function () {
+            $scope.getThreads($scope.currentForum.ID);
+        });
+    };
+
+    $scope.deletePost = function (id) {
+        $http({ url: "/Forum/DeletePost", method: "POST", params: { _post: id } }).then(function () {
+            $scope.getPosts($scope.currentThread.ID);
+        });
+    };
+
+    $scope.adminCheck = function () {
+        if ($scope.role == "Admin") {
+            return true;
+        }
+        return false;
+    };
+
+    $scope.userCheck = function () {
+        if ($scope.role == "User" || $scope.role == "Admin") {
+            return true;
+        }
+        return false;
+    };
+
+
+    $scope.test = function () {
+        $http({ url: "/Identity/Test", method: "GET", params: {} }).then(function (response) {
+            console.log(response.data);
+        });
+    };
+
     $scope.toForum = function (id) {
-        console.log("toForum " + id);
-        $scope.getForum(id);
-        $scope.currentTab = 'html/forum.html';
-    }
+        $http({ url: "/Forum/UpdateForumPosition", method: "POST", params: { _forumId: id } }).then( function () {
+            console.log("toForum " + id);
+            $scope.getForum(id);
+            $scope.currentTab = 'html/forum.html';
+        });
+    };
 
     $scope.toThread = function (id) {
-        console.log("toThread " + id);
-        $scope.getThread(id);
-        $scope.currentTab = 'html/thread.html';
-    }
+        $http({ url: "/Forum/UpdateThreadPosition", method: "POST", params: { _threadId: id } }).then(function () {
+            console.log("toThread " + id);
+            $scope.getThread(id);
+            $scope.currentTab = 'html/thread.html';
+        });
+    };
 
     $scope.tabs = [{
         title: 'Forum',

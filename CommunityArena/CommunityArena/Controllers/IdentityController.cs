@@ -5,9 +5,11 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace CommunityArena.Controllers
 {
@@ -42,10 +44,10 @@ namespace CommunityArena.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Test()
+       /* public ActionResult Test()
         {
             return RedirectToAction("Index", "Home");
-        }
+        }*/
 
         /// <summary>
         /// The Get Register User goes to the RegisterUser view and allows the user to register a User.
@@ -163,7 +165,7 @@ namespace CommunityArena.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View("LogIn");
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
@@ -179,7 +181,20 @@ namespace CommunityArena.Controllers
 
         public JsonResult GetUser()
         {
-            return Json(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            return Json(System.Web.HttpContext.Current.User.Identity.GetUserName(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetRole()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return Json("Admin", JsonRequestBehavior.AllowGet);
+            }
+            else if (User.IsInRole("User"))
+            {
+                return Json("User", JsonRequestBehavior.AllowGet);
+            }
+            return Json("Guest", JsonRequestBehavior.AllowGet);
         }
     }
 }

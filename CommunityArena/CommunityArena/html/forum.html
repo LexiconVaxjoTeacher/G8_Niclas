@@ -2,21 +2,27 @@
 <button ng-click="makeThread(currentForum.ID)">Make Thread!</button>-->
 <a ng-click="toForum(currentForum.ParentForumID)">Back to {{name}}</a>
 
-<h1>{{currentForum.name}}</h1>
+<h1>{{currentForum.Name}}</h1>
+
+<div ng-repeat="user in forumUsers">
+    <p>{{user}}</p>
+</div>
 
 <div ng-repeat="subforum in subforums">
     <a ng-click="toForum(subforum.ID)">{{subforum.Name}}</a>
+    <button ng-show="adminCheck()" ng-click="deleteForum(subforum.ID)">Delete Forum</button>
 </div>
 <div ng-repeat="thread in threads">
     <a ng-click="toThread(thread.ID)">{{thread.Name}}</a>
+    <button ng-show="adminCheck()" ng-click="deleteThread(thread.ID)">Delete Thread</button>
 </div>
 
-<form name="MakeForum" ng-submit="makeForum(currentForum.ID)">
+<form name="MakeForum" ng-submit="makeForum(currentForum.ID)" ng-show="adminCheck()">
     <label for="newForumName">New Forum Name: </label>
     <input type="text" ng-model="inputs.newForumName" required />
     <input type="submit" ng-disabled="MakeForum.$invalid" />
 </form>
-<form name="MakeThread" ng-submit="makeThread(currentForum.ID)">
+<form name="MakeThread" ng-submit="makeThread(currentForum.ID)" ng-show="userCheck()">
     <label for="newThreadName">New Thread Name: </label>
     <input type="text" ng-model="inputs.newThreadName" required />
     <input type="submit" ng-disabled="MakeThread.$invalid" />
