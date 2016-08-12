@@ -5,7 +5,8 @@
 <h1>{{currentForum.Name}}</h1>
 
 <div ng-repeat="user in forumUsers">
-    <p>{{user}}</p>
+    <p ng-mouseover="showStats(user)">{{user}}</p>
+    <button ng-show="notCurrentUserCheck(user)" ng-click="openInteraction(user)">Open Interaction</button>
 </div>
 
 <div ng-repeat="subforum in subforums">

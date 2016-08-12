@@ -3,8 +3,15 @@
 
 <h3>{{currentThread.Name}}</h3>
 
+<p>Currently watching users.</p>
 <div ng-repeat="user in threadUsers">
-    <p>{{user}}</p>
+    <p ng-mouseover="showStats(user)">{{user}}</p>
+    <button ng-show="notCurrentUserCheck(user)" ng-click="attack(user)">Attack {{user}}</button>
+</div>
+
+<div ng-show="targetCheck()">
+    <p>{{threadTarget}}</p>
+    <button ng-show="notCurrentUserCheck(threadTarget)" ng-click="attack(threadTarget)">Attack {{threadTarget}}</button>
 </div>
 
 <div ng-repeat="post in posts">

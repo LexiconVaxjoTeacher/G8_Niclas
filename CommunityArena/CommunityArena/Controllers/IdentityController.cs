@@ -163,6 +163,18 @@ namespace CommunityArena.Controllers
                 );
             if (sis == SignInStatus.Success)
             {
+                AppUser user = (from u in Context.context.Users
+                                where u.UserName.Equals(name)
+                                select u).First();
+                if (user.HasFighter == false)
+                {
+                    return RedirectToAction("CreateFighter", "Fighter", new { username = name });
+                }
+
+                user.CurrentForumID = 17;
+                user.CurrentThreadID = 17;
+                Context.context.SaveChanges();
+
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Home");
@@ -175,15 +187,27 @@ namespace CommunityArena.Controllers
         [Authorize]
         public ActionResult LogOut()
         {
+            var user = Context.context.Users.Find(User.Identity.GetUserId());
+            user.CurrentForumID = -1;
+            user.CurrentThreadID = -1;
+            Context.context.SaveChanges();
             HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Gets the username of the currently logged-in user.
+        /// </summary>
+        /// <returns>Username of currently logged-in user.</returns>
         public JsonResult GetUser()
         {
             return Json(System.Web.HttpContext.Current.User.Identity.GetUserName(), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Gets the role of the currently logged-in user.
+        /// </summary>
+        /// <returns>The role of the currently logged-in user.</returns>
         public JsonResult GetRole()
         {
             if (User.IsInRole("Admin"))

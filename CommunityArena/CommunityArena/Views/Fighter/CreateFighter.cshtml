@@ -1,0 +1,37 @@
+﻿@model Tuple<string, bool>
+
+@{
+    ViewBag.Title = "CreateFighter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateFighter</h2>
+
+@if(Model.Item2 == true)
+{
+    <p>That was more than 8 points.</p>
+}
+
+@using (Html.BeginForm(actionName: "CreateFighter", controllerName: "Fighter", method: FormMethod.Post, htmlAttributes: new { }, routeValues: new { }))
+{
+    <input type="hidden" name="username" value="@Model.Item1" />
+    <p>You may add a maximum of 8 points.</p>
+    <label for="hp">HP (For being able to take more damage): 20 + 10 * </label>
+    <input type="number" name="hp" value="" />
+    <label for="str">Strength (For dealing more damage): 2 + </label>
+    <input type="number" name="str" value="" />
+    <label for="skl">Skill (For hitting and avoiding blows): 2 + </label>
+    <input type="number" name="skl" value="" />
+    <label for="def">Defense (To take less damage from blows): 2 + </label>
+    <input type="number" name="def" value="" />
+    <label for="spd">Speed (To flee fights and avoid blows): 2 + </label>
+    <input type="number" name="spd" value="" />
+    <label for="luk">Luck (Do a little better in all encounters): </label>
+    <input type="number" name="luk" value="" />
+    <label for="con">Constitution (To be able to carry more things): 2 + </label>
+    <input type="number" name="con" value="" />
+    <label for="sen">Sense (To better avoid ambushes): 2 + </label>
+    <input type="number" name="sen" value="" />
+
+    <input type="submit" value="Send" />
+}

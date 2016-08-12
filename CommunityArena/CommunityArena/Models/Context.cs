@@ -33,5 +33,11 @@ namespace CommunityArena.Models
         public DbSet<Forum> Forums { get; set; }
         public DbSet<Thread> Threads { get; set; }
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Fighter> Fighters { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Ownership> Ownerships { get; set; }
+
+        public DbSet<Alert> Alerts { get; set; }
     }
 }

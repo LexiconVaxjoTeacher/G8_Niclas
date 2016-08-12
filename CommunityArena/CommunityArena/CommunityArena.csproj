@@ -174,6 +174,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="html\userpage.html" />
     <Content Include="html\thread.html" />
     <Content Include="html\forum.html" />
     <Content Include="Global.asax" />
@@ -203,6 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArenaController.cs" />
+    <Compile Include="Controllers\FighterController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
@@ -233,8 +236,37 @@
     <Compile Include="Migrations\201607281016418_PostUsernames.Designer.cs">
       <DependentUpon>201607281016418_PostUsernames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608020903424_Fighter-Stuff.cs" />
+    <Compile Include="Migrations\201608020903424_Fighter-Stuff.Designer.cs">
+      <DependentUpon>201608020903424_Fighter-Stuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608080748574_hasFighter.cs" />
+    <Compile Include="Migrations\201608080748574_hasFighter.Designer.cs">
+      <DependentUpon>201608080748574_hasFighter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608081046587_fighterUsername.cs" />
+    <Compile Include="Migrations\201608081046587_fighterUsername.Designer.cs">
+      <DependentUpon>201608081046587_fighterUsername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608091110048_Alerts.cs" />
+    <Compile Include="Migrations\201608091110048_Alerts.Designer.cs">
+      <DependentUpon>201608091110048_Alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608110804556_publicThreads.cs" />
+    <Compile Include="Migrations\201608110804556_publicThreads.Designer.cs">
+      <DependentUpon>201608110804556_publicThreads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608110807393_threadTarget.cs" />
+    <Compile Include="Migrations\201608110807393_threadTarget.Designer.cs">
+      <DependentUpon>201608110807393_threadTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608121141094_maxHP.cs" />
+    <Compile Include="Migrations\201608121141094_maxHP.Designer.cs">
+      <DependentUpon>201608121141094_maxHP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\ArenaItems.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\ForumItems.cs" />
     <Compile Include="Models\TutorialContent.cs" />
@@ -257,6 +289,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Identity\RegisterUser.cshtml" />
     <Content Include="Views\Identity\LogIn.cshtml" />
+    <Content Include="Views\Fighter\CreateFighter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -266,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Forum\" />
+    <Folder Include="Views\Identity\Arena\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607260814417_Initiation.resx">
@@ -285,6 +319,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607281016418_PostUsernames.resx">
       <DependentUpon>201607281016418_PostUsernames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608020903424_Fighter-Stuff.resx">
+      <DependentUpon>201608020903424_Fighter-Stuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608080748574_hasFighter.resx">
+      <DependentUpon>201608080748574_hasFighter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608081046587_fighterUsername.resx">
+      <DependentUpon>201608081046587_fighterUsername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608091110048_Alerts.resx">
+      <DependentUpon>201608091110048_Alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608110804556_publicThreads.resx">
+      <DependentUpon>201608110804556_publicThreads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608110807393_threadTarget.resx">
+      <DependentUpon>201608110807393_threadTarget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608121141094_maxHP.resx">
+      <DependentUpon>201608121141094_maxHP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

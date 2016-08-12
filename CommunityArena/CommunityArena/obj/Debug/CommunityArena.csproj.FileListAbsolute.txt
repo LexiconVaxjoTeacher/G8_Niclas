@@ -124,3 +124,10 @@ C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.RemoveSubforumTable.resources
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.WhatTheEverLiving.resources
 C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.PostUsernames.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.FighterStuff.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.hasFighter.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.fighterUsername.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.Alerts.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.publicThreads.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.threadTarget.resources
+C:\Users\deltagare\Documents\GitHub\G8_Niklas\CommunityArena\CommunityArena\obj\Debug\CommunityArena.Migrations.maxHP.resources

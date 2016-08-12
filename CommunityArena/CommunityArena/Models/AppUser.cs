@@ -18,6 +18,7 @@ namespace CommunityArena.Models
 
         public int CurrentForumID { get; set; }
         public int CurrentThreadID { get; set; }
+        public bool HasFighter { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
         {

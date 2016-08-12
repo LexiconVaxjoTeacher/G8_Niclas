@@ -30,6 +30,8 @@ namespace CommunityArena.Models
         public int ID { get; set; }
         public int ForumID { get; set; }
         public string Name { get; set; }
+        public bool Public { get; set; }
+        public string Target { get; set; }
     }
 
     public class Post

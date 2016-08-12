@@ -5,6 +5,18 @@
         ng-class="{active:isActiveTab(tab.url)}"
         ng-click="onClickTab(tab)">{{tab.title}}</li>
 </ul>-->
+<div></div>
 <div id="mainView">
     <div ng-include="currentTab"></div>
+</div>
+<div ng-show="showingFighter">
+    <p>User: {{fighterShown.Username}}</p>
+    <p>HP: {{fighterShown.HP}}/{{fighterShown.MaxHP}}</p>
+    <p>Strength: {{fighterShown.Strength}}</p>
+    <p>Skill: {{fighterShown.Skill}}</p>
+    <p>Defense: {{fighterShown.Defense}}</p>
+    <p>Speed: {{fighterShown.Speed}}</p>
+    <p>Luck: {{fighterShown.Luck}}</p>
+    <p>Constitution: {{fighterShown.Constitution}}</p>
+    <p>Sense: {{fighterShown.Sense}}</p>
 </div>
