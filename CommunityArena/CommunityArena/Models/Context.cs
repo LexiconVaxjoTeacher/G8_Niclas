@@ -11,7 +11,6 @@ namespace CommunityArena.Models
 {
     public class Context : IdentityDbContext<AppUser>
     {
-        static public Context context = new Context();
         static public UserStore<AppUser> _userstore;
         static public UserManager<AppUser> UserManager { get; set; }
 

@@ -49,24 +49,31 @@ namespace CommunityArena.Controllers
 
             newFighter.HP = newFighter.MaxHP;
 
-            Context.context.Fighters.Add(newFighter);
-            (from u in Context.context.Users
-             where u.UserName.Equals(username)
-             select u).First().HasFighter = true;
+            using (var context = new Context())
+            {
+                context.Fighters.Add(newFighter);
+                (from u in context.Users
+                 where u.UserName.Equals(username)
+                 select u).First().HasFighter = true;
 
-            var user = Context.context.Users.Find(User.Identity.GetUserId());
-            user.CurrentForumID = 17;
-            user.CurrentThreadID = 17;
-            Context.context.SaveChanges();
+                var user = context.Users.Find(User.Identity.GetUserId());
+                user.CurrentForumID = 17;
+                user.CurrentThreadID = 17;
+                context.SaveChanges();
+            }
 
             return RedirectToAction("Index", "Home");
         }
 
         public JsonResult GetFighter(string _username)
         {
-            Fighter fighter = (from u in Context.context.Fighters
-                               where u.Username.Equals(_username)
-                               select u).First();
+            Fighter fighter = new Fighter();
+            using (var context = new Context())
+            {
+                fighter = (from u in context.Fighters
+                           where u.Username.Equals(_username)
+                           select u).First();
+            }
 
             return Json(fighter, JsonRequestBehavior.AllowGet);
         }

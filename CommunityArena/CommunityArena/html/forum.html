@@ -14,7 +14,13 @@
     <button ng-show="adminCheck()" ng-click="deleteForum(subforum.ID)">Delete Forum</button>
 </div>
 <div ng-repeat="thread in threads">
+    <p> - </p>
     <a ng-click="toThread(thread.ID)">{{thread.Name}}</a>
+    <div ng-repeat="watcherList in watchers">
+        <div ng-repeat="watcher in watcherList">
+            <p>{{watcher}}</p>
+        </div>
+    </div>
     <button ng-show="adminCheck()" ng-click="deleteThread(thread.ID)">Delete Thread</button>
 </div>
 

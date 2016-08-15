@@ -81,6 +81,8 @@ namespace CommunityArena.Controllers
             return newThread;
         }
 
+        
+    
         /// <summary>
         /// Function that creates a post.
         /// </summary>
@@ -112,60 +114,67 @@ namespace CommunityArena.Controllers
 
         public JsonResult GetThreadTarget(int _threadId)
         {
-            Thread thread = (from t in Context.context.Threads
-                             where t.ID.Equals(_threadId)
-                             select t).First();
+            Thread thread = new Thread();
+            using (var context = new Context())
+            {
+                thread = (from t in context.Threads
+                          where t.ID.Equals(_threadId)
+                          select t).First();
+            }
 
             return Json(thread.Target, JsonRequestBehavior.AllowGet);
         }
 
         public void Attack(string _targetUser, int _currentForum, int _currentThread)
         {
-            AppUser target = (from u in Context.context.Users
-                              where u.UserName.Equals(_targetUser)
-                              select u).First();
-
-            if (target.CurrentForumID == _currentForum)
+            using (var context = new Context())
             {
-                Fighter attacker = (from f in Context.context.Fighters
-                                    where User.Identity.Name.Equals(f.Username)
-                                    select f).First();
-                Fighter defender = (from f in Context.context.Fighters
-                                    where _targetUser.Equals(f.Username)
-                                    select f).First();
+                AppUser target = (from u in context.Users
+                                  where u.UserName.Equals(_targetUser)
+                                  select u).First();
 
-                bool hit = false;
-                float modifier = 1f;
-
-                // Sneak-attack check.
-                if (target.CurrentThreadID != _currentThread)
+                if (target.CurrentForumID == _currentForum)
                 {
-                    hit = ResolveIfHit(attacker.Skill, defender.Sense);
-                    modifier = 2f;
+                    Fighter attacker = (from f in context.Fighters
+                                        where User.Identity.Name.Equals(f.Username)
+                                        select f).First();
+                    Fighter defender = (from f in context.Fighters
+                                        where _targetUser.Equals(f.Username)
+                                        select f).First();
 
-                    if (hit == false)
+                    bool hit = false;
+                    float modifier = 1f;
+
+                    // Sneak-attack check.
+                    if (target.CurrentThreadID != _currentThread)
                     {
-                        hit = ResolveIfHit(attacker.Skill * 2, defender.Speed + defender.Skill);
-                        modifier = 1.5f;
+                        hit = ResolveIfHit(attacker.Skill, defender.Sense);
+                        modifier = 2f;
+
+                        if (hit == false)
+                        {
+                            hit = ResolveIfHit(attacker.Skill * 2, defender.Speed + defender.Skill);
+                            modifier = 1.5f;
+                        }
+                    }
+                    else
+                    {
+                        hit = ResolveIfHit(attacker.Skill, defender.Skill);
+                    }
+                    if (hit == true)
+                    {
+                        int damage = ResolveDamage(attacker, defender, modifier, context);
+                        CreatePost(User.Identity.Name, _currentThread, User.Identity.Name + " struck " + target.UserName + " for " + damage + " damage!");
+                    }
+                    else
+                    {
+                        CreatePost(User.Identity.Name, _currentThread, User.Identity.Name + " struck at " + target.UserName + "! " + target.UserName + " dodged!");
                     }
                 }
                 else
                 {
-                    hit = ResolveIfHit(attacker.Skill, defender.Skill);
+                    CreatePost(User.Identity.Name, _currentThread, target.UserName + " left the room before " + User.Identity.Name + " could strike!");
                 }
-                if (hit == true)
-                {
-                    int damage = ResolveDamage(attacker, defender, modifier);
-                    CreatePost(User.Identity.Name, _currentThread, User.Identity.Name + " struck " + target.UserName + " for " + damage + " damage!");
-                }
-                else
-                {
-                    CreatePost(User.Identity.Name, _currentThread, User.Identity.Name + " struck at " + target.UserName + ", but he dodged!");
-                }
-            }
-            else
-            {
-                CreatePost(User.Identity.Name, _currentThread, target.UserName + " left the room before " + User.Identity.Name + " could strike!");
             }
         }
 
@@ -173,23 +182,34 @@ namespace CommunityArena.Controllers
         {
             int result = rand.Next(0, attackingValue + defendingValue);
 
+            // Example. attackingValue = 4, defendingValue = 1
+            // Possible results, 0 to 4, as 4 + 1 = 5.
+            // 0 to 3 is a hit, as that's lower than attackingValue. Hitting is likely.
+            // On the opposite, if attackingValue was 1 and defendingValue was 4.
+            // Possible results still 0 to 4.
+            // attackingValue will now only succeed on a 0.
             if (result < attackingValue)
             {
                 return true;
             }
 
+            // ... System needs to be reconsidered. As it is, at higher levels it will make almost no difference.
+            // Someone with 55 skill and someone with 48 skill will have almost the same chance of hitting / missing.
+
             return false;
         }
 
-        int ResolveDamage(Fighter attacker, Fighter defender, float modifier)
+        int ResolveDamage(Fighter attacker, Fighter defender, float modifier, Context context)
         {
-            float balance = attacker.Strength / defender.Defense;
+            float balance = (float)attacker.Strength / (float)defender.Defense;
             float weaponStrength = 10;
-            float levelBonus = (2 * attacker.Level + 10) / 250;
+            float levelBonus = (2 * (float)attacker.Level + 10) / 250;
             float damageFloat = (levelBonus * balance * weaponStrength + 2) * modifier;
             int damage = (int)Math.Round((decimal)damageFloat);
 
             defender.HP -= damage;
+
+            context.SaveChanges();
 
             if (defender.HP < 1)
             {
@@ -221,13 +241,18 @@ namespace CommunityArena.Controllers
         /// Function which deletes a thread.
         /// </summary>
         /// <param name="_thread">Thread to delete.</param>
-        public void DeleteThread(int _thread)
+        public void DeleteThread(int _threadId, Context context)
         {
-            using (var context = new Context())
+            List<int> posts = (from p in context.Posts
+                              where _threadId.Equals(p.ThreadID)
+                              select p.ID).ToList();
+
+            foreach (int post in posts)
             {
-                context.Threads.Remove(context.Threads.Find(_thread));
-                context.SaveChanges();
+                context.Posts.Remove(context.Posts.Find(post));
             }
+            context.Threads.Remove(context.Threads.Find(_threadId));
+            context.SaveChanges();
         }
 
         /// <summary>
@@ -364,8 +389,8 @@ namespace CommunityArena.Controllers
             using (var context = new Context())
             {
                 var posts = from p in context.Posts
-                              where _threadId.Equals(p.ThreadID)
-                              select p;
+                            where _threadId.Equals(p.ThreadID)
+                            select p;
 
                 result = posts.ToList();
             }
@@ -375,10 +400,13 @@ namespace CommunityArena.Controllers
 
         /// <summary>
         /// Function which updates the position of the current user.
+        /// It also checks if the thread behind the user is empty. If it is, it is deleted.
         /// </summary>
         /// <param name="_forumId">Forum which the position is to be updated to.</param>
         public void UpdateForumPosition(int _forumId)
         {
+            int lastThread = -1;
+
             using (var context = new Context())
             {
                 var users = from u in context.Users
@@ -389,8 +417,21 @@ namespace CommunityArena.Controllers
                 {
                     var user = users.First();
 
+                    lastThread = user.CurrentThreadID;
+
                     user.CurrentForumID = _forumId;
                     user.CurrentThreadID = -1;
+                    context.SaveChanges();
+
+                    if (lastThread != -1)
+                    {
+                        List<string> listOfUsersLeftInThread = GetThreadUserList(lastThread);
+                        if (listOfUsersLeftInThread.Count < 1)
+                        {
+                            DeleteThread(lastThread, context);
+                        }
+                    }
+
                     context.SaveChanges();
                 }
             }
@@ -446,7 +487,18 @@ namespace CommunityArena.Controllers
         /// </summary>
         /// <param name="_threadId">The thread we're checking.</param>
         /// <returns>A list of all users in this thread.</returns>
-        public JsonResult GetThreadUsers(int _threadId)
+        public JsonResult GetThreadUsers(int _threadId = 0)
+        {
+            if (_threadId == 0)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+            List<string> result = GetThreadUserList(_threadId);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<string> GetThreadUserList(int _threadId)
         {
             List<string> result = new List<string>();
 
@@ -462,7 +514,31 @@ namespace CommunityArena.Controllers
                 }
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return result;
+        }
+
+        [HttpPost]
+        public JsonResult GetThreadUsers(int[] _threadIds)
+        {
+            List<List<string>> usernamesPerThread = new List<List<string>>();
+
+            if (_threadIds != null)
+            {
+                using (var context = new Context())
+                {
+                    for (int i = 0; i < _threadIds.Length; i++)
+                    {
+                        int threadId = _threadIds[i];
+
+                        List<string> users = (from u in context.Users
+                                              where threadId.Equals(u.CurrentThreadID)
+                                              select u.UserName).ToList();
+                        usernamesPerThread.Add(users);
+                    }
+                }
+            }
+
+            return Json(usernamesPerThread);
         }
 
         [Authorize(Roles = "Admin")]

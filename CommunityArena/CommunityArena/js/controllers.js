@@ -93,6 +93,25 @@
     $scope.getThreads = function (id) {
         $http({ url: "/Forum/GetThreads", method: "GET", params: { _forumId: id } }).then(function (response) {
             $scope.threads = response.data;
+            /*for (var i = 0; i < $scope.threads.length; i++) {
+                $scope.threads[i].watchers = "";
+            }*/
+            $scope.getThreadWatchers();
+        });
+    };
+
+    $scope.threadIds = []
+    $scope.watchers = []
+    $scope.getThreadWatchers = function () {
+        $scope.threadIds = []
+        for (var i = 0; i < $scope.threads.length; i++) {
+            $scope.threadIds.push($scope.threads[i].ID)
+        }
+        $http({ url: "/Forum/GetThreadUsers", method: "POST", params: { _threadIds: $scope.threadIds } }).then(function (response) {
+            console.log(response.data);
+            for (var i = 0; i < response.data.length; i++) {
+                $scope.watchers.push(response.data[i]);
+            }
         });
     };
 
@@ -245,7 +264,9 @@
     };
 
     $scope.attack = function (username) {
-        $http({ url: "/Forum/Attack", method: "POST", params: { _targetUser: username, _currentForum: $scope.currentForum.ID, _currentThread: $scope.currentThread.ID } });
+        $http({ url: "/Forum/Attack", method: "POST", params: { _targetUser: username, _currentForum: $scope.currentForum.ID, _currentThread: $scope.currentThread.ID } }).then(function (thread) {
+            $scope.getPosts($scope.currentThread.ID);
+        });
     };
 
     $scope.tabs = [{

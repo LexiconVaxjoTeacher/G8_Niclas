@@ -10,7 +10,7 @@
 </div>
 
 <div ng-show="targetCheck()">
-    <p>{{threadTarget}}</p>
+    <p ng-mouseover="showStats(threadTarget)">{{threadTarget}}</p>
     <button ng-show="notCurrentUserCheck(threadTarget)" ng-click="attack(threadTarget)">Attack {{threadTarget}}</button>
 </div>
 

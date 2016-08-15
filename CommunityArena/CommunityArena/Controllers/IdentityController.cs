@@ -29,11 +29,11 @@ namespace CommunityArena.Controllers
         public ActionResult CreateRoles()
         {
             //Context.UserManager = wertrew
-            //using (var Context.context = new ContextClass())
+            using (var context = new Context())
             {
                 /*------------Role Manager--------------------------*/
 
-                var store = new RoleStore<IdentityRole>(Context.context);
+                var store = new RoleStore<IdentityRole>(context);
 
                 var roleManager = new RoleManager<IdentityRole>(store);
 
@@ -72,28 +72,34 @@ namespace CommunityArena.Controllers
         [HttpPost]
         public async Task<ActionResult> RegisterUser(string username, string password, string verifyPassword)
         {
-            Context._userstore = new UserStore<AppUser>(Context.context);
-            Context.UserManager = new UserManager<AppUser>(Context._userstore);
-
-            Context.UserManager.MaxFailedAccessAttemptsBeforeLockout = 5;
+           
+                
 
             if (password == verifyPassword)
             {
-                var newUser = new AppUser()
+                using (var context = new Context())
                 {
-                    UserName = username,
-                    CurrentForumID = 0,
-                    CurrentThreadID = 0
-                };
+                    Context._userstore = new UserStore<AppUser>(context);
+                    Context.UserManager = new UserManager<AppUser>(Context._userstore);
 
-                var result = await Context.UserManager.CreateAsync(newUser, password);
+                    Context.UserManager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-                if (result.Succeeded)
-                {
-                    Context.UserManager.AddToRole(newUser.Id, "User");
+                    var newUser = new AppUser()
+                    {
+                        UserName = username,
+                        CurrentForumID = 0,
+                        CurrentThreadID = 0
+                    };
+
+                    var result = await Context.UserManager.CreateAsync(newUser, password);
+
+                    if (result.Succeeded)
+                    {
+                        Context.UserManager.AddToRole(newUser.Id, "User");
+                    }
+
+                    await context.SaveChangesAsync();
                 }
-
-                await Context.context.SaveChangesAsync();
 
                 return await LogInFunction(username, password);
             }
@@ -102,24 +108,27 @@ namespace CommunityArena.Controllers
 
         public async Task<ActionResult> RegisterAdmin()
         {
-            Context._userstore = new UserStore<AppUser>(Context.context);
-            Context.UserManager = new UserManager<AppUser>(Context._userstore);
-
-            Context.UserManager.MaxFailedAccessAttemptsBeforeLockout = 5;
-
-            var newUser = new AppUser()
+            using (var context = new Context())
             {
-                UserName = "Admin"
-            };
+                Context._userstore = new UserStore<AppUser>(context);
+                Context.UserManager = new UserManager<AppUser>(Context._userstore);
 
-            var result = await Context.UserManager.CreateAsync(newUser, "password");
+                Context.UserManager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
-            if (result.Succeeded)
-            {
-                Context.UserManager.AddToRole(newUser.Id, "Admin");
+                var newUser = new AppUser()
+                {
+                    UserName = "Admin"
+                };
+
+                var result = await Context.UserManager.CreateAsync(newUser, "password");
+
+                if (result.Succeeded)
+                {
+                    Context.UserManager.AddToRole(newUser.Id, "Admin");
+                }
+
+                await context.SaveChangesAsync();
             }
-
-            await Context.context.SaveChangesAsync();
 
             return await LogInFunction("Admin", "password");
         }
@@ -163,17 +172,20 @@ namespace CommunityArena.Controllers
                 );
             if (sis == SignInStatus.Success)
             {
-                AppUser user = (from u in Context.context.Users
-                                where u.UserName.Equals(name)
-                                select u).First();
-                if (user.HasFighter == false)
+                using (var context = new Context())
                 {
-                    return RedirectToAction("CreateFighter", "Fighter", new { username = name });
-                }
+                    AppUser user = (from u in context.Users
+                                    where u.UserName.Equals(name)
+                                    select u).First();
+                    if (user.HasFighter == false)
+                    {
+                        return RedirectToAction("CreateFighter", "Fighter", new { username = name });
+                    }
 
-                user.CurrentForumID = 17;
-                user.CurrentThreadID = 17;
-                Context.context.SaveChanges();
+                    user.CurrentForumID = 17;
+                    user.CurrentThreadID = 17;
+                    context.SaveChanges();
+                }
 
                 return RedirectToAction("Index", "Home");
             }
@@ -187,12 +199,15 @@ namespace CommunityArena.Controllers
         [Authorize]
         public ActionResult LogOut()
         {
-            var user = Context.context.Users.Find(User.Identity.GetUserId());
-            user.CurrentForumID = -1;
-            user.CurrentThreadID = -1;
-            Context.context.SaveChanges();
-            HttpContext.GetOwinContext().Authentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            using (var context = new Context())
+            {
+                var user = context.Users.Find(User.Identity.GetUserId());
+                user.CurrentForumID = -1;
+                user.CurrentThreadID = -1;
+                context.SaveChanges();
+                HttpContext.GetOwinContext().Authentication.SignOut();
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         /// <summary>
